@@ -1,0 +1,260 @@
+[
+  {
+    "id": "local_offline_small",
+    "classifiers": {
+      "delivery_type": "internal_tool",
+      "interaction_model": "backoffice_simple",
+      "runtime": "offline_first",
+      "integration_intensity": "few",
+      "data_risk": "low",
+      "ai_usage": "none",
+      "audience_model": "small_team"
+    },
+    "expected": {
+      "primary_preset": "local_offline_tool",
+      "active_overlays": [
+        "frontend_light",
+        "offline_sync"
+      ],
+      "depth_profile": "lite"
+    }
+  },
+  {
+    "id": "design_discovery",
+    "classifiers": {
+      "delivery_type": "design_discovery",
+      "interaction_model": "mixed",
+      "runtime": "cloud",
+      "integration_intensity": "none",
+      "data_risk": "low",
+      "ai_usage": "assistive",
+      "audience_model": "small_team"
+    },
+    "expected": {
+      "primary_preset": "design_discovery_service",
+      "active_overlays": [
+        "frontend_light",
+        "ai_hitl"
+      ],
+      "depth_profile": "lite"
+    },
+    "consolidation_note": "platform_style=mixed nao existe mais; o overlay low-code agora exige interaction_model=workflow_automation"
+  },
+  {
+    "id": "onprem_high_risk",
+    "classifiers": {
+      "delivery_type": "business_system",
+      "interaction_model": "backoffice_simple",
+      "runtime": "on_prem",
+      "integration_intensity": "many",
+      "data_risk": "high",
+      "ai_usage": "none",
+      "audience_model": "multi_area"
+    },
+    "expected": {
+      "primary_preset": "onprem_business_system",
+      "active_overlays": [
+        "frontend_light",
+        "integrations_heavy",
+        "security_strong"
+      ],
+      "depth_profile": "strict"
+    },
+    "consolidation_note": "operational_criticality=high nao existe mais; em modo classifiers on_prem gera ops_need=3, abaixo do gatilho 4"
+  },
+  {
+    "id": "cloud_corporate_integrated",
+    "classifiers": {
+      "delivery_type": "business_system",
+      "interaction_model": "ui_rich",
+      "runtime": "cloud",
+      "integration_intensity": "many",
+      "data_risk": "high",
+      "ai_usage": "automated_with_hitl",
+      "audience_model": "corporate"
+    },
+    "expected": {
+      "primary_preset": "cloud_corporate_integrated",
+      "active_overlays": [
+        "frontend_light",
+        "integrations_heavy",
+        "security_strong",
+        "ai_hitl"
+      ],
+      "depth_profile": "strict"
+    },
+    "consolidation_note": "operational_criticality=high nao existe mais; rigor operacional agora vem de delivery_type=critical_system ou dos fatos da entrevista"
+  },
+  {
+    "id": "api_integration_service",
+    "classifiers": {
+      "delivery_type": "business_system",
+      "interaction_model": "api_service",
+      "runtime": "cloud",
+      "integration_intensity": "many",
+      "data_risk": "medium",
+      "ai_usage": "none",
+      "audience_model": "multi_area"
+    },
+    "expected": {
+      "primary_preset": "api_integration_service",
+      "active_overlays": [
+        "integrations_heavy"
+      ],
+      "depth_profile": "strict"
+    },
+    "consolidation_note": "idem: sem operational_criticality, um business_system cloud nao declara criticidade por si"
+  },
+  {
+    "id": "commerce_frontend_classifier",
+    "classifiers": {
+      "delivery_type": "commerce_experience",
+      "interaction_model": "ui_rich",
+      "runtime": "cloud",
+      "integration_intensity": "many",
+      "data_risk": "medium",
+      "ai_usage": "none",
+      "audience_model": "multi_tenant"
+    },
+    "expected": {
+      "primary_preset": "commerce_frontend_app",
+      "active_overlays": [
+        "frontend_light",
+        "integrations_heavy",
+        "multi_tenant"
+      ],
+      "depth_profile": "strict"
+    }
+  },
+  {
+    "id": "fallback_hybrid",
+    "classifiers": {
+      "delivery_type": "critical_system",
+      "interaction_model": "backoffice_simple",
+      "runtime": "hybrid",
+      "integration_intensity": "few",
+      "data_risk": "low",
+      "ai_usage": "none",
+      "audience_model": "small_team"
+    },
+    "expected": {
+      "primary_preset": "cloud_business_app",
+      "active_overlays": [
+        "frontend_light",
+        "ops_advanced"
+      ],
+      "depth_profile": "strict",
+      "fallbacks": [
+        "preset_assumption_required"
+      ]
+    },
+    "consolidation_note": "o caso declarava critical_system com operational_criticality=low -- combinacao contraditoria que a consolidacao eliminou"
+  },
+  {
+    "id": "answer_driven_commerce",
+    "answers": {
+      "project_name": "approved_name",
+      "sponsor": "single_sponsor",
+      "approvers": "split_chain",
+      "problem": "recurring_loss",
+      "expected_outcome": "market_or_revenue_shift",
+      "urgency": "fixed_deadline",
+      "success_metric": "cross_area_kpis",
+      "value_hypothesis": "revenue_growth",
+      "primary_users": "public_plus_internal",
+      "current_process": "spreadsheet_plus_tools",
+      "bottlenecks": "frequent_rework",
+      "mvp_scope": "transactional_journey",
+      "non_scope": "explicit_non_scope",
+      "deadline": "fixed_business_date",
+      "constraints": "team_or_budget_cap",
+      "external_dependencies": "many_dependencies",
+      "access_profile": "segregated_roles",
+      "handled_data": "customer_or_financial_data",
+      "data_loss_impact": "moderate_impact",
+      "basic_compliance": "client_or_contract_requirement",
+      "main_risks": "delivery_risk",
+      "delivery_type": "commerce_experience",
+      "interaction_model": "ui_rich",
+      "runtime": "cloud",
+      "integration_intensity": "many",
+      "data_risk": "medium",
+      "ai_usage": "none",
+      "commerce_channels": "multi_channel_commerce",
+      "commerce_conversion_flow": "multi_step_conversion",
+      "commerce_core_integrations": "regulated_payment_surface",
+      "commerce_backoffice": "governed_commercial_backoffice",
+      "audience_model": "multi_tenant"
+    },
+    "expected": {
+      "primary_preset": "commerce_frontend_app",
+      "active_overlays": [
+        "frontend_light",
+        "integrations_heavy",
+        "security_strong",
+        "multi_tenant"
+      ],
+      "depth_profile": "strict",
+      "blueprint_profile": {
+        "discovery_profile": "defined",
+        "governance_profile": "formal",
+        "delivery_profile": "urgent",
+        "risk_profile": "high",
+        "experience_profile": "commerce",
+        "operability_profile": "managed"
+      }
+    }
+  },
+  {
+    "id": "answer_driven_security_signal",
+    "answers": {
+      "project_name": "working_name",
+      "sponsor": "single_sponsor",
+      "approvers": "regulated_gate",
+      "problem": "recurring_loss",
+      "expected_outcome": "new_operating_flow",
+      "urgency": "managerial_priority",
+      "success_metric": "small_metric_set",
+      "value_hypothesis": "risk_reduction",
+      "primary_users": "multi_role_operation",
+      "mvp_scope": "few_related_flows",
+      "non_scope": "explicit_non_scope",
+      "deadline": "target_window",
+      "constraints": "stack_or_vendor_lock",
+      "external_dependencies": "few_dependencies",
+      "access_profile": "privileged_or_audit_roles",
+      "handled_data": "sensitive_regulated_data",
+      "data_loss_impact": "moderate_impact",
+      "basic_compliance": "audited_requirement",
+      "main_risks": "security_risk",
+      "delivery_type": "business_system",
+      "interaction_model": "backoffice_simple",
+      "runtime": "cloud",
+      "integration_intensity": "few",
+      "data_risk": "low",
+      "ai_usage": "assistive",
+      "minimal_audit": "formal_audit_evidence",
+      "authentication": "enterprise_auth",
+      "authorization": "fine_grained_control",
+      "secrets": "high_assurance_secret_model",
+      "audience_model": "small_team"
+    },
+    "expected": {
+      "primary_preset": "cloud_business_app",
+      "active_overlays": [
+        "frontend_light",
+        "security_strong",
+        "ai_hitl"
+      ],
+      "depth_profile": "strict",
+      "blueprint_profile": {
+        "discovery_profile": "defined",
+        "governance_profile": "managed",
+        "delivery_profile": "scheduled",
+        "risk_profile": "high",
+        "experience_profile": "internal",
+        "operability_profile": "managed"
+      }
+    }
+  }
+]

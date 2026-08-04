@@ -1,0 +1,128 @@
+[
+  {
+    "id": "minimal_mvp_only",
+    "answers": {
+      "project_name": "approved_name",
+      "sponsor": "single_sponsor",
+      "scope_target": "mvp_first",
+      "delivery_type": "internal_tool",
+      "interaction_model": "backoffice_simple",
+      "runtime": "offline_first",
+      "integration_intensity": "few",
+      "data_risk": "low",
+      "ai_usage": "none",
+      "audience_model": "small_team"
+    },
+    "expected": {
+      "minimal_line_count_max": 18,
+      "minimal_required_sections": [
+        "Identidade"
+      ],
+      "minimal_forbidden_sections": [
+        "Preset: ferramenta local offline",
+        "Para versão completa"
+      ],
+      "full_required_sections": [
+        "Identidade",
+        "Escopo e restrições",
+        "Preset: ferramenta local offline"
+      ],
+      "full_forbidden_sections": [
+        "Para versão completa"
+      ],
+      "max_full_line_count": 120
+    }
+  },
+  {
+    "id": "minimal_full_version_commerce",
+    "answers": {
+      "project_name": "approved_name",
+      "sponsor": "single_sponsor",
+      "approvers": "split_chain",
+      "scope_target": "full_version",
+      "expected_outcome": "market_or_revenue_shift",
+      "value_hypothesis": "revenue_growth",
+      "delivery_type": "commerce_experience",
+      "interaction_model": "ui_rich",
+      "runtime": "cloud",
+      "integration_intensity": "many",
+      "data_risk": "medium",
+      "ai_usage": "none",
+      "commerce_channels": "multi_channel_commerce",
+      "commerce_conversion_flow": "multi_step_conversion",
+      "commerce_core_integrations": "payment_and_fulfillment",
+      "audience_model": "multi_tenant"
+    },
+    "expected": {
+      "minimal_required_sections": [
+        "Preset: experiência comercial",
+        "Overlay: integrações pesadas",
+        "Overlay: multi-tenant"
+      ],
+      "full_required_sections": [
+        "Para versão completa",
+        "Preset: experiência comercial"
+      ],
+      "full_forbidden_sections": [
+        "Preset: sistema on-prem",
+        "Preset: app cloud de negócio"
+      ]
+    }
+  },
+  {
+    "id": "minimal_parsimony_preset_block",
+    "answers": {
+      "scope_target": "mvp_first",
+      "delivery_type": "business_system",
+      "interaction_model": "api_service",
+      "runtime": "cloud",
+      "integration_intensity": "few",
+      "data_risk": "low",
+      "ai_usage": "none",
+      "api_contracts": "single_contract",
+      "audience_model": "small_team"
+    },
+    "expected": {
+      "minimal_required_sections": [
+        "Preset: API / integração"
+      ],
+      "minimal_forbidden_sections": [
+        "Preset: sistema on-prem",
+        "Preset: app local de equipe",
+        "Para versão completa"
+      ]
+    }
+  },
+  {
+    "id": "empty_answers_does_not_inflate",
+    "answers": {},
+    "expected": {
+      "allow_minimal_empty": true,
+      "minimal_line_count_max": 6
+    }
+  },
+  {
+    "id": "parsimony_preset_cloud_corporate_integrated",
+    "answers": {
+      "scope_target": "mvp_first",
+      "delivery_type": "business_system",
+      "interaction_model": "ui_rich",
+      "runtime": "cloud",
+      "integration_intensity": "many",
+      "data_risk": "high",
+      "ai_usage": "automated_with_hitl",
+      "audience_model": "corporate"
+    },
+    "expected_full": {
+      "full_required_sections": [
+        "Preset: cloud corporativo integrado"
+      ],
+      "full_forbidden_sections": [
+        "Preset: API / integração",
+        "Preset: sistema on-prem",
+        "Preset: app cloud de negócio",
+        "Preset: experiência comercial"
+      ]
+    }
+  }
+]

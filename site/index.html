@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Planroot — Iniciador de Projeto</title>
+  <link rel="icon" href="/assets/img/planroot-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <!-- Header fixo: logo + progresso/ambiguidade -->
+  <header class="app-header">
+    <img class="logo" src="/assets/img/planroot-logo.png" alt="Planroot" />
+    <div class="progress-wrap" id="progressWrap" hidden>
+      <div class="progress-meta">
+        <span id="progressLabel">—</span>
+        <span><span data-copy="ambiguity_label"></span> <b id="ambiguityValue">0%</b></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </header>
+
+  <!-- Stage central: troca de views, sem scroll -->
+  <main class="stage">
+
+    <!-- HERO -->
+    <section class="view active hero" id="view-hero">
+      <img class="icon" src="/assets/img/planroot-icon.png" alt="" />
+      <h1 class="grad-text" data-copy="hero_headline"></h1>
+      <p class="sub" data-copy="hero_subhead"></p>
+      <div class="brief-box">
+        <textarea id="briefInput" data-copy-attr="placeholder:brief_placeholder"></textarea>
+      </div>
+      <div class="brief-actions">
+        <button class="btn btn-primary" id="startBtn" data-copy="cta_start"></button>
+      </div>
+      <div class="error-banner" id="heroError"></div>
+    </section>
+
+    <!-- WIZARD (uma pergunta por tela) -->
+    <section class="view" id="view-wizard">
+      <div class="q-meta" id="qMeta"></div>
+      <h2 class="q-title" id="qTitle"></h2>
+      <p class="q-hint" id="qHint"></p>
+      <div class="options" id="qOptions"></div>
+      <!-- Detalhes concretos ficam FORA da lista rolável de opções, senão são
+           cortados pelo overflow do container. -->
+      <div class="details" id="qDetails"></div>
+      <div class="wizard-nav">
+        <button class="btn btn-ghost" id="backBtn" data-copy="back"></button>
+        <button class="btn btn-primary" id="nextBtn" data-copy="next" disabled></button>
+      </div>
+    </section>
+
+    <!-- REVIEW / gerar blueprint -->
+    <section class="view" id="view-review">
+      <div class="card">
+        <h2 data-copy="review_title"></h2>
+        <p class="sub" data-copy="review_subhead"></p>
+        <div class="summary" id="reviewSummary"></div>
+        <button class="btn btn-primary btn-block" id="generateBtn" data-copy="generate_cta"></button>
+        <div class="error-banner" id="reviewError"></div>
+      </div>
+    </section>
+
+    <!-- PAYWALL -->
+    <section class="view" id="view-paywall">
+      <div class="card">
+        <h2 data-copy="paywall_title"></h2>
+        <div class="price-badge"><span class="cur">R$</span><span class="amt" id="priceAmt">20,00</span></div>
+        <span class="mock-pill" id="mockPill" hidden>SANDBOX / MOCK</span>
+        <p class="sub" data-copy="paywall_price_note"></p>
+        <div class="pix-area">
+          <div class="pix-qr"><img id="pixQr" src="" alt="QR Pix" /></div>
+          <div class="pix-side">
+            <p class="q-hint" data-copy="paywall_pix_hint"></p>
+            <div class="copia-cola" id="copiaCola"></div>
+            <button class="btn btn-ghost" id="copyBtn" data-copy="paywall_copy_btn"></button>
+            <div class="waiting"><span class="dot"></span><span data-copy="paywall_waiting"></span></div>
+          </div>
+        </div>
+        <div class="error-banner" id="payError"></div>
+      </div>
+    </section>
+
+    <!-- DONE -->
+    <section class="view" id="view-done">
+      <div class="card">
+        <h2 data-copy="done_title"></h2>
+        <p class="sub" data-copy="done_subhead"></p>
+        <div class="summary" id="doneSummary"></div>
+        <div class="download-row">
+          <a class="btn btn-primary" id="dlPrompt" download data-copy="download_prompt"></a>
+          <button class="btn btn-ghost" id="copyPromptBtn" data-copy="copy_prompt"></button>
+        </div>
+        <div class="download-row">
+          <a class="btn btn-ghost" id="dlMd" download data-copy="download_md"></a>
+          <a class="btn btn-ghost" id="dlJson" download data-copy="download_json"></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer"><span data-copy="footer"></span></footer>
+
+  <script src="/assets/js/copy.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

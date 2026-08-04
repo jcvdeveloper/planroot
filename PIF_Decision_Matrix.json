@@ -1,0 +1,447 @@
+{
+  "meta": {
+    "name": "PIF Decision Matrix",
+    "version": "V2",
+    "deterministic": true,
+    "description": "Matriz machine-readable que cruza respostas deterministicas da entrevista inteira para derivar classificadores, sinais, profundidade, preset principal, overlays e perfis iniciais de blueprint."
+  },
+  "evaluation_order": [
+    "normalize_answers_or_classifiers",
+    "derive_classifiers_from_answer_options",
+    "aggregate_signal_scores",
+    "resolve_depth_profile",
+    "resolve_primary_preset",
+    "resolve_active_overlays",
+    "resolve_blueprint_profile",
+    "register_skipped_modules"
+  ],
+  "domains": {
+    "delivery_type": [
+      "design_discovery",
+      "internal_tool",
+      "business_system",
+      "commerce_experience",
+      "critical_system"
+    ],
+    "interaction_model": [
+      "ui_rich",
+      "backoffice_simple",
+      "api_service",
+      "workflow_automation",
+      "mixed"
+    ],
+    "runtime": [
+      "local",
+      "offline_first",
+      "on_prem",
+      "cloud",
+      "hybrid"
+    ],
+    "audience_model": [
+      "individual",
+      "small_team",
+      "multi_area",
+      "corporate",
+      "multi_tenant"
+    ],
+    "integration_intensity": [
+      "none",
+      "few",
+      "many"
+    ],
+    "data_risk": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "ai_usage": [
+      "none",
+      "assistive",
+      "automated_with_hitl"
+    ]
+  },
+  "signal_fields": [
+    "clarity_risk",
+    "governance_load",
+    "problem_pressure",
+    "scope_load",
+    "delivery_pressure",
+    "dependency_load",
+    "access_load",
+    "security_need",
+    "ops_need",
+    "integration_need",
+    "frontend_need",
+    "ai_need",
+    "tenant_need",
+    "low_code_need",
+    "quality_need",
+    "continuity_need"
+  ],
+  "depth_rules": [
+    {
+      "priority": 10,
+      "match": "any",
+      "conditions": [
+        { "field": "data_risk", "op": "eq", "value": "high" },
+        { "field": "runtime", "op": "eq", "value": "on_prem" },
+        { "field": "audience_model", "op": "eq", "value": "corporate" },
+        { "field": "delivery_type", "op": "eq", "value": "critical_system" },
+        { "field": "integration_intensity", "op": "eq", "value": "many" },
+        { "field": "security_need", "op": "gte", "value": 4 },
+        { "field": "ops_need", "op": "gte", "value": 4 },
+        { "field": "governance_load", "op": "gte", "value": 4 }
+      ],
+      "result": "strict"
+    },
+    {
+      "priority": 20,
+      "match": "all",
+      "conditions": [
+        { "field": "audience_model", "op": "in", "values": ["individual", "small_team"] },
+        { "field": "integration_intensity", "op": "in", "values": ["none", "few"] },
+        { "field": "data_risk", "op": "eq", "value": "low" },
+        { "field": "ops_need", "op": "lte", "value": 3 },
+        { "field": "governance_load", "op": "lte", "value": 2 },
+        { "field": "dependency_load", "op": "lte", "value": 2 }
+      ],
+      "result": "lite"
+    },
+    {
+      "priority": 99,
+      "match": "always",
+      "conditions": [],
+      "result": "standard"
+    }
+  ],
+  "preset_rules": [
+    {
+      "priority": 10,
+      "match": "all",
+      "conditions": [
+        { "field": "delivery_type", "op": "eq", "value": "design_discovery" }
+      ],
+      "result": "design_discovery_service"
+    },
+    {
+      "priority": 20,
+      "match": "all",
+      "conditions": [
+        { "field": "runtime", "op": "eq", "value": "offline_first" },
+        { "field": "audience_model", "op": "in", "values": ["individual", "small_team"] },
+        { "field": "integration_intensity", "op": "in", "values": ["none", "few"] }
+      ],
+      "result": "local_offline_tool"
+    },
+    {
+      "priority": 30,
+      "match": "all",
+      "conditions": [
+        { "field": "runtime", "op": "eq", "value": "on_prem" }
+      ],
+      "result": "onprem_business_system"
+    },
+    {
+      "priority": 40,
+      "match": "all",
+      "conditions": [
+        { "field": "interaction_model", "op": "eq", "value": "api_service" }
+      ],
+      "result": "api_integration_service"
+    },
+    {
+      "priority": 45,
+      "match": "all",
+      "conditions": [
+        { "field": "delivery_type", "op": "eq", "value": "commerce_experience" }
+      ],
+      "result": "commerce_frontend_app"
+    },
+    {
+      "priority": 50,
+      "match": "all",
+      "conditions": [
+        { "field": "runtime", "op": "eq", "value": "cloud" },
+        {
+          "match": "any",
+          "conditions": [
+            { "field": "audience_model", "op": "eq", "value": "corporate" },
+            { "field": "integration_intensity", "op": "eq", "value": "many" },
+            { "field": "delivery_type", "op": "eq", "value": "critical_system" },
+            { "field": "ops_need", "op": "gte", "value": 4 },
+            { "field": "governance_load", "op": "gte", "value": 4 }
+          ]
+        }
+      ],
+      "result": "cloud_corporate_integrated"
+    },
+    {
+      "priority": 60,
+      "match": "all",
+      "conditions": [
+        { "field": "runtime", "op": "eq", "value": "cloud" }
+      ],
+      "result": "cloud_business_app"
+    },
+    {
+      "priority": 70,
+      "match": "all",
+      "conditions": [
+        { "field": "runtime", "op": "in", "values": ["local", "offline_first"] }
+      ],
+      "result": "local_small_team_app"
+    },
+    {
+      "priority": 99,
+      "match": "always",
+      "conditions": [],
+      "result": "cloud_business_app",
+      "assumption_required": true
+    }
+  ],
+  "overlay_rules": [
+    {
+      "overlay": "frontend_light",
+      "match": "any",
+      "conditions": [
+        { "field": "interaction_model", "op": "in", "values": ["ui_rich", "backoffice_simple", "mixed"] },
+        { "field": "frontend_need", "op": "gte", "value": 2 }
+      ]
+    },
+    {
+      "overlay": "offline_sync",
+      "match": "any",
+      "conditions": [
+        { "field": "runtime", "op": "eq", "value": "offline_first" },
+        { "field": "continuity_need", "op": "gte", "value": 3 }
+      ]
+    },
+    {
+      "overlay": "integrations_heavy",
+      "match": "any",
+      "conditions": [
+        { "field": "integration_intensity", "op": "eq", "value": "many" },
+        { "field": "integration_need", "op": "gte", "value": 3 }
+      ]
+    },
+    {
+      "overlay": "security_strong",
+      "match": "any",
+      "conditions": [
+        { "field": "data_risk", "op": "eq", "value": "high" },
+        { "field": "security_need", "op": "gte", "value": 3 }
+      ]
+    },
+    {
+      "overlay": "ops_advanced",
+      "match": "any",
+      "conditions": [
+        { "field": "delivery_type", "op": "eq", "value": "critical_system" },
+        { "field": "ops_need", "op": "gte", "value": 4 },
+        { "field": "continuity_need", "op": "gte", "value": 3 }
+      ]
+    },
+    {
+      "overlay": "multi_tenant",
+      "match": "any",
+      "conditions": [
+        { "field": "audience_model", "op": "eq", "value": "multi_tenant" },
+        { "field": "tenant_need", "op": "gte", "value": 2 }
+      ]
+    },
+    {
+      "overlay": "ai_hitl",
+      "match": "any",
+      "conditions": [
+        { "field": "ai_usage", "op": "in", "values": ["assistive", "automated_with_hitl"] },
+        { "field": "ai_need", "op": "gte", "value": 2 }
+      ]
+    },
+    {
+      "overlay": "low_code_workflow",
+      "match": "any",
+      "conditions": [
+        { "field": "interaction_model", "op": "eq", "value": "workflow_automation" },
+        { "field": "low_code_need", "op": "gte", "value": 2 }
+      ]
+    }
+  ],
+  "blueprint_profile_rules": {
+    "discovery_profile": [
+      {
+        "priority": 10,
+        "match": "any",
+        "conditions": [
+          { "field": "delivery_type", "op": "eq", "value": "design_discovery" },
+          { "field": "clarity_risk", "op": "gte", "value": 4 }
+        ],
+        "result": "exploratory"
+      },
+      {
+        "priority": 20,
+        "match": "all",
+        "conditions": [
+          { "field": "clarity_risk", "op": "gte", "value": 2 }
+        ],
+        "result": "aligning"
+      },
+      {
+        "priority": 99,
+        "match": "always",
+        "conditions": [],
+        "result": "defined"
+      }
+    ],
+    "governance_profile": [
+      {
+        "priority": 10,
+        "match": "any",
+        "conditions": [
+          { "field": "governance_load", "op": "gte", "value": 4 },
+          { "field": "audience_model", "op": "eq", "value": "corporate" }
+        ],
+        "result": "formal"
+      },
+      {
+        "priority": 20,
+        "match": "any",
+        "conditions": [
+          { "field": "governance_load", "op": "gte", "value": 2 },
+          { "field": "audience_model", "op": "in", "values": ["multi_area", "multi_tenant"] }
+        ],
+        "result": "managed"
+      },
+      {
+        "priority": 99,
+        "match": "always",
+        "conditions": [],
+        "result": "lean"
+      }
+    ],
+    "delivery_profile": [
+      {
+        "priority": 10,
+        "match": "all",
+        "conditions": [
+          { "field": "delivery_pressure", "op": "gte", "value": 3 }
+        ],
+        "result": "urgent"
+      },
+      {
+        "priority": 20,
+        "match": "all",
+        "conditions": [
+          { "field": "delivery_pressure", "op": "gte", "value": 1 }
+        ],
+        "result": "scheduled"
+      },
+      {
+        "priority": 99,
+        "match": "always",
+        "conditions": [],
+        "result": "flexible"
+      }
+    ],
+    "risk_profile": [
+      {
+        "priority": 10,
+        "match": "any",
+        "conditions": [
+          { "field": "data_risk", "op": "eq", "value": "high" },
+          { "field": "security_need", "op": "gte", "value": 3 },
+          { "field": "ops_need", "op": "gte", "value": 3 }
+        ],
+        "result": "high"
+      },
+      {
+        "priority": 20,
+        "match": "any",
+        "conditions": [
+          { "field": "data_risk", "op": "eq", "value": "medium" },
+          { "field": "security_need", "op": "gte", "value": 1 },
+          { "field": "ops_need", "op": "gte", "value": 1 }
+        ],
+        "result": "managed"
+      },
+      {
+        "priority": 99,
+        "match": "always",
+        "conditions": [],
+        "result": "low"
+      }
+    ],
+    "experience_profile": [
+      {
+        "priority": 10,
+        "match": "all",
+        "conditions": [
+          { "field": "delivery_type", "op": "eq", "value": "commerce_experience" }
+        ],
+        "result": "commerce"
+      },
+      {
+        "priority": 20,
+        "match": "any",
+        "conditions": [
+          { "field": "interaction_model", "op": "in", "values": ["ui_rich", "mixed"] },
+          { "field": "frontend_need", "op": "gte", "value": 2 }
+        ],
+        "result": "interface"
+      },
+      {
+        "priority": 30,
+        "match": "all",
+        "conditions": [
+          { "field": "interaction_model", "op": "eq", "value": "api_service" }
+        ],
+        "result": "service"
+      },
+      {
+        "priority": 99,
+        "match": "always",
+        "conditions": [],
+        "result": "internal"
+      }
+    ],
+    "operability_profile": [
+      {
+        "priority": 10,
+        "match": "any",
+        "conditions": [
+          { "field": "delivery_type", "op": "eq", "value": "critical_system" },
+          { "field": "ops_need", "op": "gte", "value": 4 },
+          { "field": "continuity_need", "op": "gte", "value": 4 }
+        ],
+        "result": "critical"
+      },
+      {
+        "priority": 20,
+        "match": "any",
+        "conditions": [
+          { "field": "ops_need", "op": "gte", "value": 1 }
+        ],
+        "result": "managed"
+      },
+      {
+        "priority": 99,
+        "match": "always",
+        "conditions": [],
+        "result": "simple"
+      }
+    ]
+  },
+  "fallback_rules": [
+    {
+      "situation": "missing_answer_or_classifier",
+      "action": "keep_core_always_mark_pending_choose_conservative_route"
+    },
+    {
+      "situation": "risk_vs_simplicity_conflict",
+      "action": "choose_more_conservative_route"
+    },
+    {
+      "situation": "two_valid_presets",
+      "action": "choose_higher_operational_constraint"
+    }
+  ]
+}

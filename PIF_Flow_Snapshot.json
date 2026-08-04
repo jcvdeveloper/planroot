@@ -1,0 +1,2126 @@
+{
+  "schema": "planroot.flow_snapshot/v1",
+  "ambiguity_gate": 90.0,
+  "depth_targets": {
+    "lite": 16,
+    "standard": 24,
+    "strict": 32
+  },
+  "fixtures": [
+    {
+      "id": "discovery",
+      "label": "Descoberta de ideia",
+      "routing": {
+        "ok": true,
+        "primary_preset": "design_discovery_service",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "frontend_light"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "exploratory",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "interface",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "design_discovery",
+        "interaction_model": "mixed",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 4,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 2,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 1,
+        "integration_need": 1,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 27,
+        "answers_needed_for_gate": 25,
+        "ambiguity_with_fixture_answers": 75.8,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "artifacts_expected",
+          "discovery_method",
+          "transition_criteria",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "preset_design_discovery_service",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "3a0f3e8a99795dcd",
+        "blueprint_lines": 77,
+        "minimal_sha": "fe9852586c5215f6",
+        "minimal_lines": 41,
+        "ai_prompt_sha": "fed3a32ec50afe2e",
+        "ai_prompt_lines": 64
+      }
+    },
+    {
+      "id": "local_offline_tool",
+      "label": "Ferramenta local offline",
+      "routing": {
+        "ok": true,
+        "primary_preset": "local_offline_tool",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "frontend_light",
+          "offline_sync"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "low",
+          "experience_profile": "internal",
+          "operability_profile": "simple"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "backoffice_simple",
+        "runtime": "offline_first",
+        "audience_model": "individual",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 0,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 1
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 31,
+        "answers_needed_for_gate": 28,
+        "ambiguity_with_fixture_answers": 67.7,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "output_directory",
+          "local_installation",
+          "local_storage",
+          "local_update",
+          "local_recovery",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "sync_source_of_truth",
+          "sync_conflict_policy",
+          "sync_window"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "preset_local_offline_tool",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_offline_sync",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "f25af9615b8bf988",
+        "blueprint_lines": 88,
+        "minimal_sha": "7c828fd33f4901fd",
+        "minimal_lines": 45,
+        "ai_prompt_sha": "7262d43672fc8312",
+        "ai_prompt_lines": 68
+      }
+    },
+    {
+      "id": "local_team_app",
+      "label": "App local de equipe",
+      "routing": {
+        "ok": true,
+        "primary_preset": "local_small_team_app",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "frontend_light"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "low",
+          "experience_profile": "interface",
+          "operability_profile": "simple"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "ui_rich",
+        "runtime": "local",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 0,
+        "integration_need": 0,
+        "frontend_need": 2,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 28,
+        "answers_needed_for_gate": 26,
+        "ambiguity_with_fixture_answers": 78.6,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "output_directory",
+          "local_topology",
+          "local_concurrency",
+          "local_rollout",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "preset_local_small_team_app",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "eec3ece897ac6e3c",
+        "blueprint_lines": 78,
+        "minimal_sha": "378ce0a3c6d9304d",
+        "minimal_lines": 42,
+        "ai_prompt_sha": "297d358875fd8b99",
+        "ai_prompt_lines": 65
+      }
+    },
+    {
+      "id": "api_integration",
+      "label": "API de integracao",
+      "routing": {
+        "ok": true,
+        "primary_preset": "api_integration_service",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "integrations_heavy"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "service",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "api_service",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "few",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 1,
+        "integration_need": 3,
+        "frontend_need": 0,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 30,
+        "answers_needed_for_gate": 27,
+        "ambiguity_with_fixture_answers": 76.7,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "external_dependencies",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "base_integrations",
+          "api_contracts",
+          "technical_auth",
+          "failure_handling",
+          "contract_versioning",
+          "integration_system_owners",
+          "integration_contract_limits",
+          "integration_monitoring"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "preset_api_integration_service",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_integrations_heavy",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "044bf78c788a32a1",
+        "blueprint_lines": 81,
+        "minimal_sha": "564d8770d1072929",
+        "minimal_lines": 43,
+        "ai_prompt_sha": "2942332a63809a49",
+        "ai_prompt_lines": 67
+      }
+    },
+    {
+      "id": "onprem",
+      "label": "Sistema on-premise",
+      "routing": {
+        "ok": true,
+        "primary_preset": "onprem_business_system",
+        "depth_profile": "strict",
+        "active_overlays": [
+          "frontend_light"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "managed",
+          "delivery_profile": "scheduled",
+          "risk_profile": "high",
+          "experience_profile": "internal",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "business_system",
+        "interaction_model": "backoffice_simple",
+        "runtime": "on_prem",
+        "audience_model": "multi_area",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 1,
+        "problem_pressure": 1,
+        "scope_load": 2,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 2,
+        "ops_need": 3,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 1,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 44,
+        "answers_needed_for_gate": 40,
+        "ambiguity_with_fixture_answers": 84.1,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "approvers",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "value_hypothesis",
+          "primary_users",
+          "current_process",
+          "bottlenecks",
+          "mvp_scope",
+          "non_scope",
+          "constraints",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "data_loss_impact",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "use_cases",
+          "flow_criticality",
+          "business_rules",
+          "permissions",
+          "modules",
+          "test_strategy",
+          "definition_of_done",
+          "acceptance_criteria",
+          "backup_restore",
+          "update_strategy",
+          "continuity_owner",
+          "onprem_infra_owner",
+          "local_corporate_integration",
+          "hardening_patching",
+          "local_logs",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 5
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_final_product",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_final_quality",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_continuity",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "preset_onprem_business_system",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "461327292e5fc81a",
+        "blueprint_lines": 104,
+        "minimal_sha": "edb12441854f1a5c",
+        "minimal_lines": 66,
+        "ai_prompt_sha": "b042bfb726195c9b",
+        "ai_prompt_lines": 87
+      }
+    },
+    {
+      "id": "cloud_app",
+      "label": "App cloud de negocio",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_business_app",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "frontend_light"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "interface",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "business_system",
+        "interaction_model": "ui_rich",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "few",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 1,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 1,
+        "integration_need": 1,
+        "frontend_need": 2,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 29,
+        "answers_needed_for_gate": 27,
+        "ambiguity_with_fixture_answers": 79.3,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "external_dependencies",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "base_integrations",
+          "cloud_account_hosting",
+          "cloud_environments",
+          "basic_observability",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "preset_cloud_business_app",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "dcd8e3f726580e36",
+        "blueprint_lines": 79,
+        "minimal_sha": "ebc44728872fca3c",
+        "minimal_lines": 43,
+        "ai_prompt_sha": "523698c8dfadb94f",
+        "ai_prompt_lines": 66
+      }
+    },
+    {
+      "id": "cloud_corporate",
+      "label": "Cloud corporativo integrado",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_corporate_integrated",
+        "depth_profile": "strict",
+        "active_overlays": [
+          "frontend_light",
+          "integrations_heavy"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "formal",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "interface",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "business_system",
+        "interaction_model": "mixed",
+        "runtime": "cloud",
+        "audience_model": "corporate",
+        "integration_intensity": "many",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 2,
+        "problem_pressure": 1,
+        "scope_load": 3,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 1,
+        "integration_need": 3,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 1,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 44,
+        "answers_needed_for_gate": 40,
+        "ambiguity_with_fixture_answers": 77.3,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "approvers",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "value_hypothesis",
+          "primary_users",
+          "current_process",
+          "bottlenecks",
+          "mvp_scope",
+          "non_scope",
+          "constraints",
+          "external_dependencies",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "use_cases",
+          "business_rules",
+          "permissions",
+          "modules",
+          "base_integrations",
+          "test_strategy",
+          "definition_of_done",
+          "acceptance_criteria",
+          "iam_sso",
+          "environment_promotion",
+          "iac_approvals",
+          "dr_runbooks",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "integration_system_owners",
+          "integration_contract_limits",
+          "integration_monitoring"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 5
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_product",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_final_quality",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "preset_cloud_corporate_integrated",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_integrations_heavy",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "ed3cd9c7af8c3f82",
+        "blueprint_lines": 107,
+        "minimal_sha": "17662547c0f81187",
+        "minimal_lines": 64,
+        "ai_prompt_sha": "84152abe705b638d",
+        "ai_prompt_lines": 85
+      }
+    },
+    {
+      "id": "commerce",
+      "label": "Experiencia de comercio",
+      "routing": {
+        "ok": true,
+        "primary_preset": "commerce_frontend_app",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "frontend_light"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "commerce",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "commerce_experience",
+        "interaction_model": "ui_rich",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 2,
+        "ops_need": 1,
+        "integration_need": 1,
+        "frontend_need": 5,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 28,
+        "answers_needed_for_gate": 26,
+        "ambiguity_with_fixture_answers": 75.0,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "commerce_channels",
+          "commerce_conversion_flow",
+          "commerce_core_integrations",
+          "commerce_backoffice",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "preset_commerce_frontend_app",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "3b35f2c2842dc969",
+        "blueprint_lines": 79,
+        "minimal_sha": "bfddbf4e267be98d",
+        "minimal_lines": 41,
+        "ai_prompt_sha": "d36b05a704c71dc2",
+        "ai_prompt_lines": 65
+      }
+    },
+    {
+      "id": "multi_tenant",
+      "label": "Multi-tenant",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_business_app",
+        "depth_profile": "standard",
+        "active_overlays": [
+          "frontend_light",
+          "multi_tenant"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "managed",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "internal",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "business_system",
+        "interaction_model": "backoffice_simple",
+        "runtime": "cloud",
+        "audience_model": "multi_tenant",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 2,
+        "problem_pressure": 1,
+        "scope_load": 3,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 1,
+        "ops_need": 1,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 2,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 41,
+        "answers_needed_for_gate": 37,
+        "ambiguity_with_fixture_answers": 78.0,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "approvers",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "value_hypothesis",
+          "primary_users",
+          "current_process",
+          "bottlenecks",
+          "mvp_scope",
+          "non_scope",
+          "constraints",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "use_cases",
+          "business_rules",
+          "permissions",
+          "modules",
+          "test_strategy",
+          "definition_of_done",
+          "acceptance_criteria",
+          "cloud_account_hosting",
+          "cloud_environments",
+          "basic_observability",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "tenant_isolation",
+          "tenant_onboarding",
+          "tenant_variability"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 5
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_product",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_final_quality",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "preset_cloud_business_app",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_multi_tenant",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "557ad912fe0a897b",
+        "blueprint_lines": 103,
+        "minimal_sha": "76d0b3c6003a76fb",
+        "minimal_lines": 62,
+        "ai_prompt_sha": "3fd2de65d7d7f16c",
+        "ai_prompt_lines": 82
+      }
+    },
+    {
+      "id": "ai_hitl",
+      "label": "IA com aprovacao humana",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_business_app",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "ai_hitl",
+          "frontend_light"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "internal",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "backoffice_simple",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "automated_with_hitl"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 2,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 2,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 36,
+        "answers_needed_for_gate": 33,
+        "ambiguity_with_fixture_answers": 72.2,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "data_loss_impact",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "flow_criticality",
+          "modules",
+          "backup_restore",
+          "update_strategy",
+          "continuity_owner",
+          "cloud_account_hosting",
+          "cloud_environments",
+          "basic_observability",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "agent_scope",
+          "forbidden_agent_tasks",
+          "human_checkpoints",
+          "agent_audit"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_final_product",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_final_continuity",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "preset_cloud_business_app",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_ai_hitl",
+          "block_type": "overlay_block",
+          "question_count": 4
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "dcbd359fca0efd55",
+        "blueprint_lines": 99,
+        "minimal_sha": "05e9852ec83cb334",
+        "minimal_lines": 56,
+        "ai_prompt_sha": "3b404dc0b6217234",
+        "ai_prompt_lines": 77
+      }
+    },
+    {
+      "id": "low_code",
+      "label": "Low-code / workflow",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_business_app",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "low_code_workflow"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "managed",
+          "experience_profile": "internal",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "workflow_automation",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 1,
+        "integration_need": 1,
+        "frontend_need": 0,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 2,
+        "quality_need": 0,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 27,
+        "answers_needed_for_gate": 25,
+        "ambiguity_with_fixture_answers": 77.8,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "cloud_account_hosting",
+          "cloud_environments",
+          "basic_observability",
+          "low_code_platform",
+          "low_code_promotion",
+          "low_code_limits"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "preset_cloud_business_app",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_low_code_workflow",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "9a28053bdba75888",
+        "blueprint_lines": 77,
+        "minimal_sha": "d9525bb30e7644f5",
+        "minimal_lines": 41,
+        "ai_prompt_sha": "8324de4df4ee71cb",
+        "ai_prompt_lines": 64
+      }
+    },
+    {
+      "id": "high_security",
+      "label": "Alta seguranca",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_business_app",
+        "depth_profile": "strict",
+        "active_overlays": [
+          "frontend_light",
+          "security_strong"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "scheduled",
+          "risk_profile": "high",
+          "experience_profile": "internal",
+          "operability_profile": "managed"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "backoffice_simple",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "high",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 1,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 1,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 6,
+        "ops_need": 1,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 1,
+        "continuity_need": 0
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 45,
+        "answers_needed_for_gate": 41,
+        "ambiguity_with_fixture_answers": 80.0,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "value_hypothesis",
+          "primary_users",
+          "current_process",
+          "bottlenecks",
+          "mvp_scope",
+          "non_scope",
+          "constraints",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "basic_compliance",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "use_cases",
+          "business_rules",
+          "modules",
+          "minimal_audit",
+          "authentication",
+          "authorization",
+          "secrets",
+          "retention",
+          "test_strategy",
+          "definition_of_done",
+          "acceptance_criteria",
+          "cloud_account_hosting",
+          "cloud_environments",
+          "basic_observability",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "security_encryption",
+          "security_audit_scope",
+          "privileged_actions"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 5
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_final_product",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_final_security_min",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_final_quality",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "preset_cloud_business_app",
+          "block_type": "preset_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_security_strong",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "b170bdaf2713951e",
+        "blueprint_lines": 110,
+        "minimal_sha": "7628a6906dc61ada",
+        "minimal_lines": 69,
+        "ai_prompt_sha": "cfbac3950f0acf62",
+        "ai_prompt_lines": 88
+      }
+    },
+    {
+      "id": "full_version_annex",
+      "label": "Versao completa (exercita o anexo)",
+      "routing": {
+        "ok": true,
+        "primary_preset": "local_offline_tool",
+        "depth_profile": "lite",
+        "active_overlays": [
+          "frontend_light",
+          "offline_sync"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "urgent",
+          "risk_profile": "low",
+          "experience_profile": "internal",
+          "operability_profile": "simple"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "internal_tool",
+        "interaction_model": "backoffice_simple",
+        "runtime": "offline_first",
+        "audience_model": "individual",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 2,
+        "delivery_pressure": 3,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 0,
+        "ops_need": 0,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 1
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 31,
+        "answers_needed_for_gate": 28,
+        "ambiguity_with_fixture_answers": 67.7,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "primary_users",
+          "current_process",
+          "mvp_scope",
+          "scope_target",
+          "handled_data",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "modules",
+          "output_directory",
+          "local_installation",
+          "local_storage",
+          "local_update",
+          "local_recovery",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "sync_source_of_truth",
+          "sync_conflict_policy",
+          "sync_window"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "preset_local_offline_tool",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_offline_sync",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "e2e21e840ead5e5d",
+        "blueprint_lines": 103,
+        "minimal_sha": "7c828fd33f4901fd",
+        "minimal_lines": 45,
+        "ai_prompt_sha": "6ad44d54a91b2686",
+        "ai_prompt_lines": 68
+      }
+    },
+    {
+      "id": "critical_ops",
+      "label": "Operacao critica",
+      "routing": {
+        "ok": true,
+        "primary_preset": "cloud_corporate_integrated",
+        "depth_profile": "strict",
+        "active_overlays": [
+          "frontend_light",
+          "ops_advanced"
+        ],
+        "blueprint_profile": {
+          "discovery_profile": "defined",
+          "governance_profile": "lean",
+          "delivery_profile": "flexible",
+          "risk_profile": "high",
+          "experience_profile": "internal",
+          "operability_profile": "critical"
+        },
+        "fallbacks": [
+          "missing_or_unknown_input_review_required"
+        ]
+      },
+      "classifiers": {
+        "delivery_type": "critical_system",
+        "interaction_model": "backoffice_simple",
+        "runtime": "cloud",
+        "audience_model": "small_team",
+        "integration_intensity": "none",
+        "data_risk": "low",
+        "ai_usage": "none"
+      },
+      "signals": {
+        "clarity_risk": 0,
+        "governance_load": 0,
+        "problem_pressure": 1,
+        "scope_load": 0,
+        "delivery_pressure": 0,
+        "dependency_load": 0,
+        "access_load": 0,
+        "security_need": 1,
+        "ops_need": 7,
+        "integration_need": 0,
+        "frontend_need": 1,
+        "ai_need": 0,
+        "tenant_need": 0,
+        "low_code_need": 0,
+        "quality_need": 0,
+        "continuity_need": 2
+      },
+      "flow": {
+        "phase1_count": 29,
+        "active_path_count": 45,
+        "answers_needed_for_gate": 41,
+        "ambiguity_with_fixture_answers": 77.8,
+        "active_path_ids": [
+          "project_name",
+          "sponsor",
+          "problem",
+          "expected_outcome",
+          "urgency",
+          "success_metric",
+          "value_hypothesis",
+          "primary_users",
+          "current_process",
+          "bottlenecks",
+          "mvp_scope",
+          "non_scope",
+          "constraints",
+          "scope_target",
+          "access_profile",
+          "handled_data",
+          "data_loss_impact",
+          "main_risks",
+          "delivery_type",
+          "interaction_model",
+          "runtime",
+          "audience_model",
+          "integration_intensity",
+          "data_risk",
+          "ai_usage",
+          "use_cases",
+          "flow_criticality",
+          "business_rules",
+          "modules",
+          "test_strategy",
+          "definition_of_done",
+          "acceptance_criteria",
+          "backup_restore",
+          "update_strategy",
+          "continuity_owner",
+          "iam_sso",
+          "environment_promotion",
+          "iac_approvals",
+          "dr_runbooks",
+          "frontend_surfaces",
+          "frontend_accessibility",
+          "mvp_launcher",
+          "service_targets",
+          "incident_flow",
+          "release_rollback"
+        ]
+      },
+      "sections": [
+        {
+          "block_id": "core_identity",
+          "block_type": "core_always",
+          "question_count": 2
+        },
+        {
+          "block_id": "core_problem_value",
+          "block_type": "core_always",
+          "question_count": 5
+        },
+        {
+          "block_id": "core_users_process",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_scope_constraints",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_data_access",
+          "block_type": "core_always",
+          "question_count": 4
+        },
+        {
+          "block_id": "core_final_product",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_architecture",
+          "block_type": "core_always",
+          "question_count": 1
+        },
+        {
+          "block_id": "core_final_quality",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "core_final_continuity",
+          "block_type": "core_always",
+          "question_count": 3
+        },
+        {
+          "block_id": "preset_cloud_corporate_integrated",
+          "block_type": "preset_block",
+          "question_count": 4
+        },
+        {
+          "block_id": "overlay_frontend_light",
+          "block_type": "overlay_block",
+          "question_count": 3
+        },
+        {
+          "block_id": "overlay_ops_advanced",
+          "block_type": "overlay_block",
+          "question_count": 3
+        }
+      ],
+      "renders": {
+        "blueprint_sha": "63b147aad0e06fd6",
+        "blueprint_lines": 111,
+        "minimal_sha": "68abe3c488a18a30",
+        "minimal_lines": 68,
+        "ai_prompt_sha": "c430ff4afcc4ea50",
+        "ai_prompt_lines": 88
+      }
+    }
+  ]
+}
