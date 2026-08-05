@@ -400,3 +400,82 @@ acesso, continuidade, qualidade — não mais reformulações do mesmo eixo. Red
 além disto deixa de ser consolidação e passa a ser **corte de decisão**: escolher
 que o artefato não cobrirá determinado assunto. Essa é uma decisão de produto, não
 de engenharia, e precisa ser tomada assunto a assunto.
+
+---
+
+## 8. Fase 5 — defaults declarados: tentada, medida e descartada
+
+A seção 3 listava quatro técnicas para alcançar a meta: núcleo condicional,
+perguntas compostas, derivação e **defaults declarados**. As três primeiras foram
+aplicadas (Fase 3 original, Fases 3 e 4 acima). Esta seção registra por que a
+quarta não foi.
+
+`app/pif_answers.py` já declarava `SOURCE_PRESET_DEFAULT` como procedência
+válida, sem nenhum uso — a infraestrutura estava pronta e esperando.
+
+### 8.1 O que foi implementado
+
+Uma tabela `ASSUMPTIONS` no banco (pergunta → opção assumida + condição), com
+aplicação em `resolve_interview_plan`: quando a condição batesse e a pergunta não
+tivesse resposta, ela sairia do fluxo com a opção assumida, registrada como
+decisão resolvida com procedência `preset_default`. A decisão continuaria tomada
+e visível no artefato — o oposto de cortá-la.
+
+Duas salvaguardas: a opção assumida teria de ser a de menor carga de sinais
+(assumir nunca empurra a rota para cima) e nenhum default valeria em `strict`.
+
+### 8.2 Por que não funciona neste desenho
+
+**Medição: zero perguntas assumidas em qualquer rota.**
+
+As perguntas candidatas — `approvers`, `non_scope`, `constraints`,
+`test_strategy`, `definition_of_done`, `acceptance_criteria`, `minimal_audit`,
+`business_rules`, `permissions` — **já estão fora das rotas `lite`** por
+`ask_when`, desde a Fase 3 original. Um default para elas nunca é alcançado.
+
+O problema é estrutural, não de calibração. As perguntas que restam no fluxo
+sobreviveram a um gate que as julgou relevantes:
+
+| Profundidade | Core ativas | O que sobrou |
+|---|---:|---|
+| `lite` | 22 | núcleo essencial: problema, escopo, usuários, dados, risco |
+| `standard` | 25 | núcleo + aprofundamento moderado |
+| `strict` | 38 | tudo, por exigência de rigor |
+
+Em `lite`, assumir default nas 22 restantes seria **inventar o projeto do
+cliente** — são as perguntas que definem o que ele quer construir. Nas poucas de
+aprofundamento que aparecem em `lite` (`backup_restore`, `update_strategy`,
+`continuity_owner`, `data_loss_impact`, `flow_criticality`), o caso é ainda pior:
+elas entraram porque `_OPERACAO_RELEVANTE` detectou `ops_need >= 2`. Assumir o
+valor mínimo justamente nelas **anularia o gate que as trouxe** — o sistema
+detectaria risco operacional e responderia "assume-se que não há".
+
+Em `strict`, onde o excesso é maior (44–45 contra meta 32), assumir é exatamente
+o que não se deve fazer: é a rota de maior rigor.
+
+**Conclusão:** um default só é seguro para uma pergunta que o fluxo considera
+dispensável — e o fluxo já removeu essas. Onde ainda há perguntas, há razão
+declarada para perguntá-las. O mecanismo foi revertido inteiro; nenhum resto
+ficou no código.
+
+### 8.3 Onde o limite fica
+
+| Profundidade | Atual | Meta | Gap |
+|---|---:|---:|---:|
+| `lite` | 27–36 | 16 | +11 a +20 |
+| `standard` | 41 | 24 | +17 |
+| `strict` | 44–45 | 32 | +12 a +13 |
+
+As três técnicas de engenharia disponíveis foram esgotadas: condicionar (Fase 3
+original, −299), consolidar classificadores (Fase 3, −44), consolidar núcleo
+(Fase 4, −68). Total: 897 → 486 perguntas, **−46%**.
+
+Fechar o gap restante exige decidir que o artefato **não cobrirá** determinado
+assunto — continuidade, qualidade, auditoria, acesso — em determinadas rotas. Não
+existe forma de engenharia de fazer isso sem perda: é escolher o que o plano
+deixa de dizer. A meta de 16 para `lite` implica manter ~3 das 22 decisões
+essenciais, o que descaracterizaria o artefato.
+
+Recomendação: revisar a meta por profundidade contra o que o blueprint precisa
+conter, em vez de tratá-la como alvo fixo. As metas atuais (16/24/32) não têm
+origem documentada fora desta tabela.

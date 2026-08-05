@@ -23,7 +23,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from app.pif_answers import SOURCE_PRESET_DEFAULT, answer_source, is_answered, legacy_option_id
+from app.pif_answers import answer_source, is_answered, legacy_option_id
 from app.pif_question_bank import QUESTION_INDEX, QUESTIONS
 
 
@@ -188,10 +188,6 @@ class InterviewPlan:
     skipped: dict[str, str]
     provenance: dict[str, str]
     progress: float = 0.0
-    # Perguntas que sairam do fluxo com uma opcao assumida: {pergunta: opcao}.
-    # Nao sao pendencias -- a decisao foi tomada por default declarado -- mas
-    # precisam aparecer no artefato para que o cliente possa discordar.
-    assumed: dict[str, str] = field(default_factory=dict)
 
     def is_active(self, question_id: str) -> bool:
         return question_id in self._active_set
@@ -320,24 +316,6 @@ def resolve_interview_plan(
 
         active.append(question_id)
 
-    # 2.5) Defaults declarados: a pergunta sai do fluxo com a opcao assumida.
-    #      Roda antes da substituicao porque uma generica assumida nao deve
-    #      concorrer com a especializada -- e depois das condicoes, porque o
-    #      default so vale para quem ja esta na rota.
-    assumed: dict[str, str] = {}
-    for question_id in list(active):
-        assumption = QUESTION_INDEX[question_id].get("assumption")
-        if not assumption or is_answered(answers.get(question_id)):
-            continue
-        if not _condition_holds(assumption["when"], context):
-            continue
-        assumed[question_id] = assumption["option"]
-
-    if assumed:
-        active = [question_id for question_id in active if question_id not in assumed]
-        for question_id, option_id in assumed.items():
-            skipped[question_id] = f"assumido: {option_id}"
-
     # 3) Substituicao: a especializada respondida remove a generica equivalente.
     superseded: dict[str, str] = {}
     for specialized, generics in SUPERSEDES.items():
@@ -365,26 +343,13 @@ def resolve_interview_plan(
         resolved.setdefault(decision_key, {})[question_id] = legacy_option_id(answers[question_id])
         provenance.setdefault(decision_key, answer_source(answers[question_id]))
 
-    # Uma decisao assumida por default tambem esta resolvida -- por isso o
-    # default e alternativa ao corte, e nao corte disfarcado. A procedencia
-    # `preset_default` e o que permite ao artefato marcar a diferenca entre o
-    # que o cliente decidiu e o que o sistema assumiu por ele.
-    for question_id, option_id in assumed.items():
-        decision_key = DECISION_BY_QUESTION.get(question_id)
-        if decision_key is None:
-            continue
-        resolved.setdefault(decision_key, {})[question_id] = option_id
-        provenance.setdefault(decision_key, SOURCE_PRESET_DEFAULT)
-
     # Uma decisao so e exigida quando a rota tem ao menos uma pergunta capaz de
     # resolve-la. Decisao que este projeto nao precisa tomar nao e pendencia --
     # conta-la travaria o progresso abaixo de 100% para sempre numa rota enxuta.
-    # As assumidas entram: sairam do fluxo, mas a decisao continua sendo tomada.
-    decidable = list(active) + list(assumed)
     required_keys = [
         decision.key
         for decision in DECISIONS
-        if any(DECISION_BY_QUESTION.get(qid) == decision.key for qid in decidable)
+        if any(DECISION_BY_QUESTION.get(qid) == decision.key for qid in active)
     ]
     unresolved = [key for key in required_keys if key not in resolved]
 
@@ -402,5 +367,4 @@ def resolve_interview_plan(
         skipped=skipped,
         provenance=provenance,
         progress=progress,
-        assumed=assumed,
     )

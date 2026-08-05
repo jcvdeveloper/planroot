@@ -1642,51 +1642,6 @@ for _question_id, _condition in FLOW_CONDITIONS.items():
     QUESTION_INDEX[_question_id].update(_condition)
 
 
-# --------------------------------------------------------------------------- #
-# Defaults declarados (Fase 5)
-# --------------------------------------------------------------------------- #
-# A alternativa ao corte. Uma pergunta com default nao e removida da entrevista:
-# quando a condicao bate e ela nao foi respondida, o sistema **assume** a opcao
-# declarada, tira a pergunta do fluxo e registra a assuncao no blueprint, com a
-# procedencia `preset_default`. A decisao continua tomada e visivel -- o cliente
-# revisa se discordar. Cortar a pergunta perderia a decisao; assumir, nao.
-#
-# Duas regras governam a tabela, e ambas sao verificadas por
-# `tools/pif_test_decisions.py`:
-#
-# 1. A opcao assumida tem de ser a de MENOR carga de sinais da pergunta. Uma
-#    assuncao nunca pode empurrar a rota para cima -- se o projeto de fato tiver
-#    aquela necessidade, o cliente responde e o sinal aparece. Assim assumir e
-#    sempre conservador em relacao ao esforco proposto.
-# 2. A condicao so pode ser satisfeita por rotas de baixa exigencia. Nenhum
-#    default vale em `strict`.
-#
-# Consequencia dos dois pontos: os sinais assumidos sao todos zero, e portanto
-# nenhum default altera preset, overlay ou profundidade.
-_ROTA_ENXUTA = {"depth_profile": "lite"}
-
-ASSUMPTIONS: dict[str, dict[str, Any]] = {
-    # -- Governanca: numa rota enxuta ha um dono unico, sem cadeia de aprovacao.
-    "approvers": {"option": "single_chain", "when": _ROTA_ENXUTA},
-    # -- Escopo: o nao-escopo explicito e o comportamento padrao de um MVP.
-    "non_scope": {"option": "explicit_non_scope", "when": _ROTA_ENXUTA},
-    # -- Prazo e restricoes: sem pressao declarada, o cronograma e flexivel.
-    "constraints": {"option": "low_constraint", "when": _ROTA_ENXUTA},
-    # -- Qualidade: verificacao manual basica e o piso de qualquer entrega.
-    "test_strategy": {"option": "basic_manual_checks", "when": _ROTA_ENXUTA},
-    "definition_of_done": {"option": "light_dod", "when": _ROTA_ENXUTA},
-    "acceptance_criteria": {"option": "simple_acceptance", "when": _ROTA_ENXUTA},
-    # -- Auditoria: historico leve, proporcional a uma rota sem risco elevado.
-    "minimal_audit": {"option": "light_history", "when": _ROTA_ENXUTA},
-    # -- Produto: regras de negocio leves acompanham escopo enxuto.
-    "business_rules": {"option": "light_rules", "when": _ROTA_ENXUTA},
-    # -- Acesso: um nivel unico de acesso e o padrao de equipe pequena.
-    "permissions": {"option": "simple_permissions", "when": _ROTA_ENXUTA},
-}
-
-for _question_id, _assumption in ASSUMPTIONS.items():
-    QUESTION_INDEX[_question_id]["assumption"] = _assumption
-
 OPTION_INDEX: dict[str, dict[str, dict[str, Any]]] = {
     question["id"]: {option["id"]: option for option in question["options"]}
     for question in QUESTIONS
