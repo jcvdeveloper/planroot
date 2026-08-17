@@ -1,0 +1,40 @@
+# Blueprint do Render — versionado para que o deploy seja reproduzivel.
+# Depois de conectar este repositorio no painel do Render, todo push em main
+# dispara build e deploy sozinho (autoDeploy).
+#
+# rootDir: server e o que faz os imports funcionarem. O Render clona o
+# repositorio inteiro mas roda com cwd=server, o que atende as duas convencoes
+# do codigo ao mesmo tempo:
+#   - `import store` / `import payments_asaas` resolvem pelo cwd;
+#   - main.py calcula ROOT = HERE.parent e insere no sys.path, tornando
+#     app/ e tools/ (o motor PIF, na raiz do repo) importaveis.
+
+services:
+  - type: web
+    name: planroot
+    runtime: python
+    plan: free
+    region: oregon
+    rootDir: server
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    healthCheckPath: /api/questions
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+
+      # O plano free tem disco efemero: as sessoes somem a cada deploy ou
+      # restart. Enquanto for assim, o pagamento fica em mock — um restart no
+      # meio de uma cobranca real perderia o blueprint ja pago.
+      # Para cobrar de verdade: plano Starter + disco, PLANROOT_DB_PATH
+      # apontando para o volume, e entao ASAAS_MODE=live.
+      - key: ASAAS_MODE
+        value: mock
+
+      # Segredos ficam fora do YAML. sync: false faz o Render pedir o valor
+      # no painel em vez de versiona-lo aqui.
+      - key: ASAAS_API_KEY
+        sync: false
+      - key: ASAAS_WEBHOOK_TOKEN
+        sync: false

@@ -8,13 +8,16 @@ The download endpoints read `paid` from here before releasing any file.
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
-DB_PATH = Path(__file__).resolve().parent / "planroot.db"
+# Configuravel para que o deploy possa apontar o banco para um disco
+# persistente sem mudar codigo. Sem a variavel, cai no comportamento local.
+DB_PATH = Path(os.getenv("PLANROOT_DB_PATH") or Path(__file__).resolve().parent / "planroot.db")
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS sessions (
@@ -44,6 +47,9 @@ def _connect() -> sqlite3.Connection:
 
 
 def init_db() -> None:
+    # PLANROOT_DB_PATH pode apontar para um volume cujo diretorio ainda nao
+    # existe; sqlite3.connect nao cria o caminho sozinho.
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     with _connect() as conn:
         conn.executescript(_SCHEMA)
         # Migracao defensiva: CREATE TABLE IF NOT EXISTS nao adiciona colunas novas

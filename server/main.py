@@ -11,8 +11,9 @@ from __future__ import annotations
 
 import json
 import sys
+from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, AsyncIterator, Optional
 
 from fastapi import Body, FastAPI, Header, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse, Response
@@ -30,12 +31,13 @@ import pif_service  # noqa: E402
 import store  # noqa: E402
 from exporters import build_json, build_md, build_prompt  # noqa: E402
 
-app = FastAPI(title="Planroot PIF", version="1.0.0")
-
-
-@app.on_event("startup")
-def _startup() -> None:
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     store.init_db()
+    yield
+
+
+app = FastAPI(title="Planroot PIF", version="1.0.0", lifespan=lifespan)
 
 
 # --------------------------------------------------------------------------- #
