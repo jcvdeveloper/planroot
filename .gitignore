@@ -10,3 +10,7 @@ __pycache__/
 .playwright-mcp/
 .venv/
 venv/
+
+# Banco de sessoes: dado de runtime, nunca versionado.
+*.db
+server/planroot.db
