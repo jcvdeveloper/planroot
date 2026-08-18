@@ -1,13 +1,17 @@
 # Blueprint do Render — versionado para que o deploy seja reproduzivel.
-# Depois de conectar este repositorio no painel do Render, todo push em main
-# dispara build e deploy sozinho (autoDeploy).
+# Depois de conectar este repositorio no painel, todo push em main dispara
+# build e deploy sozinho (autoDeploy).
 #
-# rootDir: server e o que faz os imports funcionarem. O Render clona o
-# repositorio inteiro mas roda com cwd=server, o que atende as duas convencoes
-# do codigo ao mesmo tempo:
-#   - `import store` / `import payments_asaas` resolvem pelo cwd;
-#   - main.py calcula ROOT = HERE.parent e insere no sys.path, tornando
-#     app/ e tools/ (o motor PIF, na raiz do repo) importaveis.
+# Sem rootDir de proposito. O Render so dispara autodeploy para mudancas
+# dentro do rootDir, e o frontend (site/) e o motor PIF (app/, tools/) vivem
+# fora de server/ -- com rootDir: server um push que mexesse so no site nao
+# publicaria nada. Os comandos abaixo carregam o caminho explicitamente.
+#
+# O `cd server` no startCommand e o que faz os imports funcionarem: e preciso
+# rodar com cwd=server para atender as duas convencoes do codigo --
+# `import store` / `import payments_asaas` resolvem pelo cwd, e main.py
+# calcula ROOT = HERE.parent e insere no sys.path, tornando app/ e tools/
+# (o motor PIF, na raiz do repo) importaveis.
 
 services:
   - type: web
@@ -15,9 +19,8 @@ services:
     runtime: python
     plan: free
     region: oregon
-    rootDir: server
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r server/requirements.txt
+    startCommand: cd server && uvicorn main:app --host 0.0.0.0 --port $PORT
     autoDeploy: true
     healthCheckPath: /api/questions
     envVars:
@@ -25,7 +28,7 @@ services:
         value: "3.11.9"
 
       # O plano free tem disco efemero: as sessoes somem a cada deploy ou
-      # restart. Enquanto for assim, o pagamento fica em mock — um restart no
+      # restart. Enquanto for assim, o pagamento fica em mock -- um restart no
       # meio de uma cobranca real perderia o blueprint ja pago.
       # Para cobrar de verdade: plano Starter + disco, PLANROOT_DB_PATH
       # apontando para o volume, e entao ASAAS_MODE=live.
