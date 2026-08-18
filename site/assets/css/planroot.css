@@ -341,7 +341,7 @@ a:focus-visible, button:focus-visible, textarea:focus-visible {
   font-size: var(--fs-body); font-weight: 700; font-family: var(--font-sans);
   letter-spacing: -0.01em;
   border: 1px solid transparent;
-  transition: transform var(--dur-sm) var(--ease), filter var(--dur-sm) var(--ease),
+  transition: transform var(--dur-sm) var(--ease),
               box-shadow var(--dur-md) var(--ease), opacity var(--dur-sm) var(--ease),
               color var(--dur-sm) var(--ease), border-color var(--dur-sm) var(--ease);
 }
@@ -351,17 +351,42 @@ a:focus-visible, button:focus-visible, textarea:focus-visible {
 .btn-primary {
   position: relative; overflow: hidden;
   background-image: var(--grad-brand); color: #04201d;
-  box-shadow: 0 10px 30px -8px rgba(45, 212, 191, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  /* Glow em camadas curtas, nao numa difusao unica longa. Um blur de 40px de
+     teal sobre fundo escuro percorre poucos passos de cor em 8 bits por canal
+     e o degrade vira degraus visiveis (color banding). Tres sombras curtas
+     sobrepostas cobrem o mesmo alcance com transicao suave. */
+  box-shadow:
+    0 2px 6px -2px rgba(45, 212, 191, 0.45),
+    0 6px 14px -6px rgba(45, 212, 191, 0.38),
+    0 12px 26px -12px rgba(45, 212, 191, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 .btn-primary::after {
   content: ""; position: absolute; top: 0; bottom: 0; width: 36%;
-  left: -45%; transform: skewX(-18deg);
+  left: 0;
+  /* translateX, nao `left`: animar `left` refaz layout e repaint a cada frame,
+     o que reobriga o navegador a rasterizar a mascara arredondada do botao
+     durante todo o hover -- e dai vem o serrilhado da borda. */
+  transform: translateX(-245%) skewX(-18deg);
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transition: left 600ms var(--ease);
+  transition: transform 600ms var(--ease);
+  will-change: transform;
 }
-.btn-primary:hover::after { left: 115%; }
-.btn-primary:hover { filter: brightness(1.07); box-shadow: 0 14px 40px -8px rgba(45, 212, 191, 0.75); }
-.btn-primary:disabled { opacity: 0.32; cursor: not-allowed; box-shadow: none; transform: none; filter: none; }
+.btn-primary:hover::after { transform: translateX(320%) skewX(-18deg); }
+/* Sem filter: brightness() aqui. O filter promove o botao a uma camada de
+   composicao propria e, junto do border-radius e do translateY do :hover, a
+   borda arredondada e rerasterizada sem antialiasing. O gradiente mais claro
+   da o mesmo efeito visual sem criar camada nenhuma. */
+.btn-primary:hover {
+  background-image: linear-gradient(96deg, var(--spark) 0%, var(--accent2) 42%, var(--accent) 100%);
+  box-shadow:
+    0 3px 8px -2px rgba(45, 212, 191, 0.5),
+    0 8px 18px -6px rgba(45, 212, 191, 0.44),
+    0 16px 34px -12px rgba(45, 212, 191, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.btn-primary:disabled { opacity: 0.32; cursor: not-allowed; box-shadow: none; transform: none; }
+.btn-primary:disabled::after { display: none; }
 .btn-ghost { background: rgba(255,255,255,0.02); color: var(--muted); border-color: var(--line-strong); }
 .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
 .btn-block { width: 100%; }
@@ -395,7 +420,15 @@ a:focus-visible, button:focus-visible, textarea:focus-visible {
 }
 /* transform-only: se a animação for pausada, o item segue visível */
 @keyframes optIn { from { transform: translateY(12px); } to { transform: translateY(0); } }
-.option:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 30px -16px rgba(45,212,191,0.6); }
+/* Mesma troca de sombra unica difusa por camadas curtas: os cards de opcao
+   usavam a mesma receita e mostravam o mesmo banding no hover. */
+.option:hover {
+  border-color: var(--accent); transform: translateY(-2px);
+  box-shadow:
+    0 2px 6px -3px rgba(45, 212, 191, 0.4),
+    0 6px 14px -8px rgba(45, 212, 191, 0.34),
+    0 12px 24px -14px rgba(45, 212, 191, 0.28);
+}
 .option.selected {
   border-color: var(--accent); background: var(--surface-2);
   box-shadow: inset 0 0 0 1px var(--accent), 0 0 22px -6px rgba(45,212,191,0.5);
