@@ -37,5 +37,5 @@ window.COPY = {
   download_md: "Baixar blueprint.md",
   download_json: "Baixar blueprint.json",
 
-  footer: "Planroot — o jeito certo de começar. [deploy-check]",
+  footer: "Planroot — o jeito certo de começar.",
 };
