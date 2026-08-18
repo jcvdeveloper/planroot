@@ -3,6 +3,11 @@
 
 const API = "/api";
 
+// copy.js define window.COPY e carrega antes deste arquivo. O fallback cobre
+// o caso em que ele nao chega (cache, bloqueador, rede): sem isso, cada
+// leitura de window.COPY.<chave> lancaria TypeError e mataria o fluxo.
+window.COPY = window.COPY || {};
+
 const state = {
   sessionId: null,
   questionsById: {},
@@ -18,14 +23,24 @@ const state = {
 // --------------------------------------------------------------------------- //
 // Bootstrap: injeta copy (placeholders) e carrega o banco de perguntas
 // --------------------------------------------------------------------------- //
+// Todo o texto da interface entra por aqui: no HTML os elementos nascem
+// vazios. Se copy.js nao tiver carregado (cache, bloqueador, falha de rede),
+// window.COPY vem undefined -- e sem a guarda abaixo o TypeError derrubava o
+// init inteiro, deixando a pagina so com o fundo. Uma pagina sem copy ainda
+// e recuperavel; uma pagina sem JS nenhum, nao.
 function applyCopy() {
+  const copy = window.COPY;
+  if (!copy) {
+    console.error("copy.js nao carregou: a interface fica sem textos.");
+    return;
+  }
   document.querySelectorAll("[data-copy]").forEach((el) => {
     const key = el.getAttribute("data-copy");
-    if (window.COPY[key] !== undefined) el.textContent = window.COPY[key];
+    if (copy[key] !== undefined) el.textContent = copy[key];
   });
   document.querySelectorAll("[data-copy-attr]").forEach((el) => {
     const [attr, key] = el.getAttribute("data-copy-attr").split(":");
-    if (window.COPY[key] !== undefined) el.setAttribute(attr, window.COPY[key]);
+    if (copy[key] !== undefined) el.setAttribute(attr, copy[key]);
   });
 }
 
@@ -137,7 +152,7 @@ function renderQuestion() {
   const q = state.questionsById[qid];
   document.getElementById("qMeta").textContent = `${q.phase} · ${state.index + 1}/${state.sequence.length}`;
   document.getElementById("qTitle").textContent = q.prompt;
-  document.getElementById("qHint").textContent = window.COPY.wizard_choose_hint;
+  document.getElementById("qHint").textContent = window.COPY.wizard_choose_hint || "";
   document.getElementById("progressLabel").textContent = q.title;
 
   const box = document.getElementById("qOptions");
@@ -249,7 +264,7 @@ function goReview() {
     ["Preset principal", r.primary_preset || "—"],
     ["Profundidade", r.depth_profile || "—"],
     ["Overlays ativos", (r.active_overlays || []).join(", ") || "nenhum"],
-    [window.COPY.ambiguity_label, `${Math.round(r.ambiguity_reduction || 0)}%`],
+    [window.COPY.ambiguity_label || "Clareza", `${Math.round(r.ambiguity_reduction || 0)}%`],
   ]);
   show("view-review");
 }
