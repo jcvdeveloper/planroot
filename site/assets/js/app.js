@@ -375,6 +375,18 @@ function copyPix() {
   if (navigator.clipboard && text) navigator.clipboard.writeText(text);
 }
 
+// Chips de exemplo do hero: preenchem o brief para quem trava na folha em
+// branco. O texto de cada um vem do data-fill, no HTML.
+function bindExampleChips() {
+  const input = document.getElementById("briefInput");
+  document.querySelectorAll(".examples .chip").forEach((chip) => {
+    chip.onclick = () => {
+      input.value = chip.getAttribute("data-fill") || "";
+      input.focus();
+    };
+  });
+}
+
 function bind() {
   document.getElementById("startBtn").onclick = startInterview;
   document.getElementById("nextBtn").onclick = nextQuestion;
@@ -382,6 +394,7 @@ function bind() {
   document.getElementById("generateBtn").onclick = generateBlueprint;
   document.getElementById("copyBtn").onclick = copyPix;
   document.getElementById("copyPromptBtn").onclick = copyPrompt;
+  bindExampleChips();
 }
 
 (async function init() {

@@ -1,29 +1,29 @@
-// Toda a copy de marketing vive aqui como PLACEHOLDERS {{...}}.
-// A copy final será gerada depois; basta substituir os valores deste objeto.
-// Os títulos/prompts das PERGUNTAS NÃO ficam aqui — vêm do banco PIF (/api/questions).
+// Planroot — toda a copy de interface vive aqui.
+// Os títulos/prompts das PERGUNTAS NÃO ficam aqui — vêm do banco PIF
+// determinístico, servido pelo backend em /api/questions.
 
 window.COPY = {
   // HERO — lead de Mecanismo. A caixa de texto É o lead.
   hero_headline: "Transforme uma ideia solta num projeto pronto pra executar.",
-  hero_subhead: "Responda algumas perguntas. O motor do Planroot elimina a ambiguidade e te entrega o blueprint — antes de você escrever a primeira linha.",
+  hero_subhead: "Uma entrevista determinística elimina a ambiguidade da sua ideia e gera um blueprint completo — pronto pra colar no seu agente de IA e construir sem improviso.",
   brief_placeholder: "Ex: um app de agendamento pra clínicas pequenas…",
-  cta_start: "Começar",
+  brief_hint: "Descreva em uma frase. Quanto mais claro, melhor o blueprint.",
+  cta_start: "Iniciar entrevista",
 
   // WIZARD — vende progresso
-  wizard_choose_hint: "Escolha a opção mais próxima. Dá pra ajustar depois.",
-  ambiguity_label: "Ambiguidade",
+  wizard_choose_hint: "Escolha a opção mais próxima da realidade. Dá pra voltar e ajustar.",
+  ambiguity_label: "Clareza",
   back: "Voltar",
   next: "Próxima",
 
   // REVIEW — mostra o salto de clareza antes de cobrar
   review_title: "Pronto. Sua ideia já tem esqueleto.",
-  review_subhead: "Reduzimos a ambiguidade ao máximo. Veja o que o Planroot extraiu antes de gerar seu blueprint.",
+  review_subhead: "Entrevista concluída. Veja o que o motor extraiu antes de gerar o blueprint completo.",
   generate_cta: "Gerar meu blueprint",
 
   // PAYWALL — vende desbloqueio do que já ficou visível + urgência sutil
   paywall_title: "Seu blueprint está pronto pra baixar.",
   paywall_price_note: "R$20, pagamento único. Sem assinatura, sem cadastro, download na hora. Começar agora sai mais barato do que recomeçar do zero depois.",
-  paywall_value_props: "✓ Prompt para IA pronto pra colar no Claude/Codex/ChatGPT  ·  ✓ blueprint.md e .json estruturados  ·  ✓ menos retrabalho e bug no início  ·  ✓ liberado na hora que o Pix cair",
   paywall_pix_hint: "Escaneie o QR ou copie o código Pix pra pagar.",
   paywall_copy_btn: "Copiar código Pix",
   paywall_waiting: "Esperando a confirmação do pagamento…",

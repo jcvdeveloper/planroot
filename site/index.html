@@ -4,16 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Planroot — Iniciador de Projeto</title>
-  <link rel="icon" href="/assets/img/planroot-icon.png" />
+  <link rel="icon" href="/assets/img/planroot-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/planroot.css" />
 </head>
 <body>
-  <!-- Header fixo: logo + progresso/ambiguidade -->
+  <!-- Fundo vivo: Lightfall (WebGL) + grid de blueprint por cima -->
+  <div id="lightfall-bg" aria-hidden="true"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-dots"></div>
+
+  <!-- Header fixo: marca + medidor de clareza -->
   <header class="app-header">
-    <img class="logo" src="/assets/img/planroot-logo.png" alt="Planroot" />
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/assets/img/planroot-mark.png" alt="" />
+      <img class="brand-word" src="/assets/img/planroot-wordmark.png" alt="Planroot" />
+    </a>
     <div class="progress-wrap" id="progressWrap" hidden>
       <div class="progress-meta">
         <span id="progressLabel">—</span>
@@ -28,11 +36,26 @@
 
     <!-- HERO -->
     <section class="view active hero" id="view-hero">
-      <img class="icon" src="/assets/img/planroot-icon.png" alt="" />
+      <div class="mark-stage">
+        <span class="mark-halo"></span>
+        <span class="mark-ring"></span>
+        <img class="mark-img" src="/assets/img/planroot-mark.png" alt="" />
+      </div>
+      <div class="hero-eyebrow"><span class="dot-live"></span>Motor determinístico PIF · entrevista adaptativa</div>
       <h1 class="grad-text" data-copy="hero_headline"></h1>
       <p class="sub" data-copy="hero_subhead"></p>
       <div class="brief-box">
         <textarea id="briefInput" data-copy-attr="placeholder:brief_placeholder"></textarea>
+        <div class="brief-hint">
+          <span data-copy="brief_hint"></span>
+        </div>
+      </div>
+      <!-- Chips de exemplo: preenchem o brief. O wiring vive no app.js. -->
+      <div class="examples">
+        <button class="chip" data-fill="Um app de agendamento pra clínicas pequenas, com lembrete por WhatsApp.">App de agendamento</button>
+        <button class="chip" data-fill="Um marketplace de aulas particulares conectando alunos e professores.">Marketplace de aulas</button>
+        <button class="chip" data-fill="Uma automação que lê notas fiscais por e-mail e organiza numa planilha.">Automação de NF-e</button>
+        <button class="chip" data-fill="Uma landing page pra captar leads de um curso online.">Landing de captação</button>
       </div>
       <div class="brief-actions">
         <button class="btn btn-primary" id="startBtn" data-copy="cta_start"></button>
@@ -58,6 +81,7 @@
     <!-- REVIEW / gerar blueprint -->
     <section class="view" id="view-review">
       <div class="card">
+        <div class="card-badge"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"></path></svg></span> Esqueleto extraído</div>
         <h2 data-copy="review_title"></h2>
         <p class="sub" data-copy="review_subhead"></p>
         <div class="summary" id="reviewSummary"></div>
@@ -74,11 +98,12 @@
         <span class="mock-pill" id="mockPill" hidden>SANDBOX / MOCK</span>
         <p class="sub" data-copy="paywall_price_note"></p>
         <div class="pix-area">
+          <!-- <img>, nao <canvas>: o QR vem do backend em base64 (/api/checkout). -->
           <div class="pix-qr"><img id="pixQr" src="" alt="QR Pix" /></div>
           <div class="pix-side">
             <p class="q-hint" data-copy="paywall_pix_hint"></p>
             <div class="copia-cola" id="copiaCola"></div>
-            <button class="btn btn-ghost" id="copyBtn" data-copy="paywall_copy_btn"></button>
+            <button class="btn btn-ghost btn-block" id="copyBtn" data-copy="paywall_copy_btn"></button>
             <div class="waiting"><span class="dot"></span><span data-copy="paywall_waiting"></span></div>
           </div>
         </div>
@@ -89,6 +114,7 @@
     <!-- DONE -->
     <section class="view" id="view-done">
       <div class="card">
+        <div class="done-burst"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-13"></path></svg></div>
         <h2 data-copy="done_title"></h2>
         <p class="sub" data-copy="done_subhead"></p>
         <div class="summary" id="doneSummary"></div>
@@ -107,6 +133,7 @@
 
   <footer class="app-footer"><span data-copy="footer"></span></footer>
 
+  <script type="module" src="/assets/js/lightfall.js"></script>
   <script src="/assets/js/copy.js"></script>
   <script src="/assets/js/app.js"></script>
 </body>
