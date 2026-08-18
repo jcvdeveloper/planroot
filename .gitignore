@@ -14,3 +14,7 @@ venv/
 # Banco de sessoes: dado de runtime, nunca versionado.
 *.db
 server/planroot.db
+
+# Originais da marca: 10 MB de PNGs que nenhum arquivo do site referencia.
+# Ficam no disco como fonte; copia em ~/Downloads/Planroot-Logos-originais.
+Logos/
