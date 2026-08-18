@@ -1,0 +1,28 @@
+#!/bin/sh
+# Planroot — carimba os assets do site com o hash do conteudo antes do commit.
+#
+# Instale com:  python3 tools/install_hooks.py
+#
+# So roda quando o commit toca site/: nada a fazer se a mudanca e do backend
+# ou dos documentos do PIF. Se o index.html mudar, entra no MESMO commit --
+# senao a versao dos assets ficaria sempre um commit atrasada em producao.
+
+set -e
+
+# Nada em site/ neste commit? Sai calado.
+if git diff --cached --name-only --diff-filter=ACMR | grep -q '^site/'; then
+    :
+else
+    exit 0
+fi
+
+python3 tools/bump_assets_version.py || {
+    echo "pre-commit: falha ao versionar os assets; commit abortado." >&2
+    exit 1
+}
+
+# Reencena o index.html se o script o alterou.
+if ! git diff --quiet -- site/index.html; then
+    git add site/index.html
+    echo "pre-commit: site/index.html reversionado e incluido no commit."
+fi
